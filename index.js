@@ -66,12 +66,19 @@ async function run (){
             const result = await orderCollection.deleteOne(query);
             res.json(result);
         });
+        // Delete API
+        app.delete('/manageorder/:email', async(req, res) => {
+            const email = req.params.email;
+            const query = {email};
+            const result = await orderCollection.deleteOne(query);
+            res.json(result);
+        });
 
         // All Order API
         app.get('/manageorder', async (req, res) =>{
             const cursor = orderCollection.find({});
-            const travels = await cursor.toArray();
-            res.send(travels);
+            const result = await cursor.toArray();
+            res.send(result);
         });
 
         // check
